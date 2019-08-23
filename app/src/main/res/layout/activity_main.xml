@@ -1,189 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/dp_250"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/dp_10"
+        >
 
         <TextView
             android:id="@+id/text_temp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/dp_50"
             android:layout_gravity="bottom"
             android:gravity="end"
-            android:inputType="textImeMultiLine"
             android:textAlignment="textEnd"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold"
+            />
 
         <TextView
             android:id="@+id/text_cal"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/dp_50"
             android:layout_gravity="bottom"
             android:gravity="end"
-            android:inputType="textImeMultiLine"
             android:textAlignment="textEnd"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold"
+            />
 
         <TextView
             android:id="@+id/text_Numbers"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/dp_10"
             android:layout_gravity="bottom"
             android:gravity="end"
             android:inputType="textImeMultiLine"
             android:textAlignment="textEnd"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold"
+            />
 
         <TextView
-            android:layout_margin="3dp"
             android:id="@+id/text_Result"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/dp_50"
             android:layout_gravity="bottom"
+            android:layout_margin="3dp"
             android:gravity="end"
-            android:inputType="textImeMultiLine"
-            android:text="0"
-            android:textColor="@color/colorGreen"
+            android:text="@string/_0"
             android:textAlignment="textEnd"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textColor="@color/colorGreen"
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold"
+            />
     </LinearLayout>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="#ED857E7E"
-        android:padding="5dp"
-        android:paddingBottom="5dp"
+        android:background="@color/colorGray"
+        android:padding="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_5"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        >
 
         <TableRow>
 
             <Button
                 android:id="@+id/button_clear"
+                android:text="@string/title_ac"
                 style="@style/Button"
-                android:text="AC" />
+                />
 
             <ImageView
                 android:id="@+id/image_delete"
+                android:layout_height="@dimen/dp_48"
+                android:src="@drawable/ic_delete"
                 style="@style/Image"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_delete" />
+                />
 
             <Button
                 android:id="@+id/button_mod"
+                android:text="@string/mod"
                 style="@style/Button"
-                android:text="%" />
+                />
 
             <Button
                 android:id="@+id/button_div"
+                android:text="@string/div"
                 style="@style/Button"
-                android:text="/" />
+                />
         </TableRow>
 
         <TableRow>
 
             <Button
                 android:id="@+id/button_7"
+                android:text="@string/_7"
                 style="@style/Button"
-                android:text="7" />
+                />
 
             <Button
                 android:id="@+id/button_8"
+                android:text="@string/_8"
                 style="@style/Button"
-                android:text="8" />
+                />
 
             <Button
                 android:id="@+id/button_9"
+                android:text="@string/_9"
                 style="@style/Button"
-                android:text="9" />
+                />
 
             <Button
                 android:id="@+id/button_mul"
+                android:text="@string/_mul"
                 style="@style/Button"
-                android:text="X" />
+                />
         </TableRow>
 
         <TableRow>
 
             <Button
                 android:id="@+id/button_4"
+                android:text="@string/_4"
                 style="@style/Button"
-                android:text="4" />
+                />
 
             <Button
                 android:id="@+id/button_5"
+                android:text="@string/_5"
                 style="@style/Button"
-                android:text="5" />
+                />
 
             <Button
                 android:id="@+id/button_6"
+                android:text="@string/_6"
                 style="@style/Button"
-                android:text="6" />
+                />
 
             <Button
                 android:id="@+id/button_sub"
+                android:text="-"
                 style="@style/Button"
-                android:text="-" />
+                />
         </TableRow>
 
         <TableRow>
 
             <Button
                 android:id="@+id/button_1"
+                android:text="@string/_1"
                 style="@style/Button"
-                android:text="1" />
+                />
 
             <Button
                 android:id="@+id/button_2"
+                android:text="@string/_2"
                 style="@style/Button"
-                android:text="2" />
+                />
 
             <Button
                 android:id="@+id/button_3"
+                android:text="@string/_3"
                 style="@style/Button"
-                android:text="3" />
+                />
 
             <Button
                 android:id="@+id/button_add"
+                android:text="@string/add"
                 style="@style/Button"
-                android:text="+" />
+                />
         </TableRow>
 
         <TableRow>
             <Button
                 android:id="@+id/button_swap"
+                android:text="+/-"
                 style="@style/Button"
-                android:text="+/-" />
+                />
 
             <Button
                 android:id="@+id/button_0"
+                android:text="@string/_0"
                 style="@style/Button"
-                android:text="0" />
+                />
 
             <Button
                 android:id="@+id/button_dot"
+                android:text="@string/_dot"
                 style="@style/Button"
-                android:text="." />
+                />
 
             <Button
                 android:id="@+id/button_Result"
+                android:text="@string/total"
                 style="@style/Button"
-                android:text="=" />
+                />
         </TableRow>
     </TableLayout>
 
@@ -191,7 +216,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|bottom"
-        android:text="made by Huy"
-        android:textColor="#E60808"
-        android:textSize="20dp" />
+        android:text="@string/made_by_huy"
+        android:textColor="@color/colorRed"
+        android:textSize="20dp"
+        />
 </LinearLayout>
