@@ -18,4 +18,8 @@
     <string name="mod" translatable="false">%</string>
     <string name="div" translatable="false">/</string>
     <string name="made_by_huy" translatable="false">made by huy</string>
+    <string name="sub" translatable="false">-</string>
+    <string name="opposite" translatable="false">+/-</string>
+    <string name="Error" translatable="false">ERROR</string>
 </resources>
+

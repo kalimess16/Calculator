@@ -43,7 +43,6 @@
             android:layout_height="@dimen/dp_10"
             android:layout_gravity="bottom"
             android:gravity="end"
-            android:inputType="textImeMultiLine"
             android:textAlignment="textEnd"
             android:textSize="@dimen/sp_30"
             android:textStyle="bold"
@@ -54,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
             android:layout_gravity="bottom"
-            android:layout_margin="3dp"
+            android:layout_margin="@dimen/dp_5"
             android:gravity="end"
             android:text="@string/_0"
             android:textAlignment="textEnd"
@@ -67,7 +66,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@color/colorGray"
         android:padding="@dimen/dp_5"
         android:paddingBottom="@dimen/dp_5"
@@ -153,7 +152,7 @@
 
             <Button
                 android:id="@+id/button_sub"
-                android:text="-"
+                android:text="@string/sub"
                 style="@style/Button"
                 />
         </TableRow>
@@ -188,7 +187,7 @@
         <TableRow>
             <Button
                 android:id="@+id/button_swap"
-                android:text="+/-"
+                android:text="@string/opposite"
                 style="@style/Button"
                 />
 
@@ -218,6 +217,5 @@
         android:gravity="center|bottom"
         android:text="@string/made_by_huy"
         android:textColor="@color/colorRed"
-        android:textSize="20dp"
-        />
+        android:textSize="@dimen/sp_20"/>
 </LinearLayout>

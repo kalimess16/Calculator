@@ -1,7 +1,6 @@
 package com.example.mycalculator;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     public static final String SPACE = "", ADD = "+", SUB = "-", MUL = "X", DIV = "/", MOD = "%";
 
-    private TextView mNumber1, mCal, mResult, mNumber2;
-    private String mFirst = "", mSecond = "", mShowR = "0";
+    private TextView mFirstNumber, mCal, mResult, mSecondNumber;
+    private String mValueOfFirst = "", mValueOfSecond = "", mShowResult = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void anhXa() {
-        mNumber1 = findViewById(R.id.text_Numbers);
-        mNumber2 = findViewById(R.id.text_temp);
+        mFirstNumber = findViewById(R.id.text_Numbers);
+        mSecondNumber = findViewById(R.id.text_temp);
         mCal = findViewById(R.id.text_cal);
         mResult = findViewById(R.id.text_Result);
     }
@@ -30,27 +29,27 @@ public class MainActivity extends AppCompatActivity {
     private void myCalculator() {
         switch (mCal.getText().toString()) {
             case SPACE:
-                mShowR = mFirst;
+                mShowResult = mValueOfFirst;
                 break;
             case ADD:
-                mShowR = String.valueOf(Double.parseDouble(mSecond) + Double.parseDouble(mFirst));
+                mShowResult = String.valueOf(Double.parseDouble(mValueOfSecond) + Double.parseDouble(mValueOfFirst));
                 break;
             case SUB:
-                mShowR = String.valueOf(Double.parseDouble(mSecond) - Double.parseDouble(mFirst));
+                mShowResult = String.valueOf(Double.parseDouble(mValueOfSecond) - Double.parseDouble(mValueOfFirst));
                 break;
             case MUL:
-                mShowR = String.valueOf(Double.parseDouble(mSecond) * Double.parseDouble(mFirst));
+                mShowResult = String.valueOf(Double.parseDouble(mValueOfSecond) * Double.parseDouble(mValueOfFirst));
                 break;
             case DIV:
-                if (mFirst.equals("0")) {
+                if (mValueOfFirst.equals("0")) {
                     Toast.makeText(this, "Error by 0", Toast.LENGTH_SHORT).show();
                 } else {
-                    mShowR = String.valueOf(
-                            Double.parseDouble(mSecond) / Double.parseDouble(mFirst));
+                    mShowResult = String.valueOf(
+                            Double.parseDouble(mValueOfSecond) / Double.parseDouble(mValueOfFirst));
                 }
                 break;
             case MOD:
-                mShowR = String.valueOf(Double.parseDouble(mSecond) % Double.parseDouble(mFirst));
+                mShowResult = String.valueOf(Double.parseDouble(mValueOfSecond) % Double.parseDouble(mValueOfFirst));
                 break;
         }
     }
@@ -59,50 +58,47 @@ public class MainActivity extends AppCompatActivity {
      * truyền data vào màng hình
      */
     private void setNumber(String numbers) {
-        if (!mFirst.equals("0")) mFirst += numbers; // loại bỏ số 0 ở đầu
-        if (!numbers.equals("0") && mFirst.equals("0")) {
-            mFirst = numbers;
-            Log.d("TAG", mFirst);
-        }
+        if (!mValueOfFirst.equals("0")) mValueOfFirst += numbers; // loại bỏ số 0 ở đầu
+        if (!numbers.equals("0") && mValueOfFirst.equals("0")) mValueOfFirst = numbers;
         show();
     }
 
     private void show() {
-        mNumber1.setText(mFirst);
+        mFirstNumber.setText(mValueOfFirst);
         myCalculator();
-        mResult.setText(mShowR);
+        mResult.setText(mShowResult);
     }
 
     private void setCal(String cal) {
         switch (cal) {
             case ADD:
-                mHand();
+                handle();
                 mCal.setText(ADD);
                 break;
             case SUB:
-                mHand();
+                handle();
                 mCal.setText(SUB);
                 break;
             case MUL:
-                mHand();
+                handle();
                 mCal.setText(MUL);
                 break;
             case DIV:
-                mHand();
+                handle();
                 mCal.setText(DIV);
                 break;
             case MOD:
-                mHand();
+                handle();
                 mCal.setText(MOD);
                 break;
         }
     }
 
-    private void mHand() {
-        mSecond = mShowR;
-        mNumber2.setText(mSecond);
-        mFirst = "";
-        mNumber1.setText(mFirst);
+    private void handle() {
+        mValueOfSecond = mShowResult;
+        mSecondNumber.setText(mValueOfSecond);
+        mValueOfFirst = "";
+        mFirstNumber.setText(mValueOfFirst);
     }
 
     /**
@@ -165,10 +161,10 @@ public class MainActivity extends AppCompatActivity {
                 cDelete();
                 break;
             case R.id.button_swap:
-                cSwap();
+                opposite();
                 break;
             case R.id.button_dot:
-                cDot();
+                funBtnDot();
                 break;
         }
     }
@@ -176,12 +172,12 @@ public class MainActivity extends AppCompatActivity {
     /**
      * button .
      */
-    private void cDot() {
-        if (!mFirst.isEmpty()) {
-            mFirst = mFirst + ".";
+    private void funBtnDot() {
+        if (!mValueOfFirst.isEmpty()) {
+            mValueOfFirst = mValueOfFirst + ".";
             show();
         } else {
-            mFirst = "0.";
+            mValueOfFirst = "0.";
             show();
         }
     }
@@ -189,20 +185,20 @@ public class MainActivity extends AppCompatActivity {
     /**
      * button chuyển đổi dấu +/-
      */
-    private void cSwap() {
-        if (!mFirst.isEmpty()) {
-            if (Double.parseDouble(mFirst) > 0) {
-                mFirst = SUB + mFirst;
+    private void opposite() {
+        if (!mValueOfFirst.isEmpty()) {
+            if (Double.parseDouble(mValueOfFirst) > 0) {
+                mValueOfFirst = SUB + mValueOfFirst;
                 show();
-            } else if (Double.parseDouble(mFirst) == 0) {
-                mFirst = "0";
+            } else if (Double.parseDouble(mValueOfFirst) == 0) {
+                mValueOfFirst = "0";
                 show();
             } else {
-                mFirst = mFirst.substring(1, mFirst.length());
+                mValueOfFirst = mValueOfFirst.substring(1, mValueOfFirst.length());
                 show();
             }
         } else {
-            Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.Error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -210,23 +206,23 @@ public class MainActivity extends AppCompatActivity {
      * Button Delete
      */
     private void cDelete() {
-        if (!mFirst.isEmpty()) {
+        if (!mValueOfFirst.isEmpty()) {
             // kiểm ra nếu nFirst về rỗng hay đó là số âm
-            if (mFirst.length() == 1 || mFirst.length() == 2 && Double.parseDouble(mFirst) < 0) {
-                mFirst = SPACE;
-                if (SPACE.equals(mSecond)) { // kiểm tra trong lúc tính toán
-                    mShowR = "0";
-                    mResult.setText(mShowR);
+            if (mValueOfFirst.length() == 1 || mValueOfFirst.length() == 2 && Double.parseDouble(mValueOfFirst) < 0) {
+                mValueOfFirst = SPACE;
+                if (SPACE.equals(mValueOfSecond)) { // kiểm tra trong lúc tính toán
+                    mShowResult = "0";
+                    mResult.setText(mShowResult);
                 } else {
-                    mShowR = mSecond;
-                    mResult.setText(mShowR);
+                    mShowResult = mValueOfSecond;
+                    mResult.setText(mShowResult);
                 }
             } else {
-                mFirst = mFirst.substring(0, mFirst.length() - 1);
+                mValueOfFirst = mValueOfFirst.substring(0, mValueOfFirst.length() - 1);
                 myCalculator();
-                mResult.setText(mShowR);
+                mResult.setText(mShowResult);
             }
-            mNumber1.setText(mFirst);
+            mFirstNumber.setText(mValueOfFirst);
         } else {
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
         }
@@ -236,23 +232,23 @@ public class MainActivity extends AppCompatActivity {
      * Button =
      */
     private void cTotal() {
-        if (mSecond.equals(SPACE) && !mFirst.equals(SPACE)) {
-            mShowR = mFirst;
-            mFirst = SPACE;
-            mNumber1.setText(mFirst);
-            mResult.setText(mShowR);
-        } else if (mFirst.equals(SPACE) && !mSecond.equals(SPACE)) {
-            mShowR = mSecond;
-            mSecond = SPACE;
-            mNumber2.setText(mSecond);
-            mResult.setText(mFirst);
+        if (mValueOfSecond.equals(SPACE) && !mValueOfFirst.equals(SPACE)) {
+            mShowResult = mValueOfSecond;
+            mValueOfFirst = SPACE;
+            mFirstNumber.setText(mValueOfFirst);
+            mResult.setText(mShowResult);
+        } else if (mValueOfFirst.equals(SPACE) && !mValueOfSecond.equals(SPACE)) {
+            mShowResult = mValueOfSecond;
+            mValueOfSecond = SPACE;
+            mSecondNumber.setText(mValueOfSecond);
+            mResult.setText(mValueOfFirst);
         } else {
-            mFirst = SPACE;
-            mSecond = SPACE;
+            mValueOfSecond = SPACE;
+            mValueOfSecond = SPACE;
             mCal.setText(SPACE);
-            mNumber1.setText(mFirst);
-            mNumber2.setText(mSecond);
-            mResult.setText(mShowR);
+            mFirstNumber.setText(mValueOfFirst);
+            mSecondNumber.setText(mValueOfSecond);
+            mResult.setText(mShowResult);
         }
     }
 
@@ -260,12 +256,12 @@ public class MainActivity extends AppCompatActivity {
      * Button AC
      */
     private void cClear() {
-        mFirst = "";
-        mNumber1.setText(mFirst);
-        mSecond = "";
-        mNumber2.setText(mSecond);
+        mValueOfFirst = "";
+        mFirstNumber.setText(mValueOfFirst);
+        mValueOfSecond = "";
+        mSecondNumber.setText(mValueOfSecond);
         mCal.setText("");
-        mShowR = "0";
-        mResult.setText(mShowR);
+        mShowResult = "0";
+        mResult.setText(mShowResult);
     }
 }
