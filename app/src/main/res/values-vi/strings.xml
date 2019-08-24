@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCalculator</string>
+    <string name="title_ac">AC</string>
+
+</resources>
